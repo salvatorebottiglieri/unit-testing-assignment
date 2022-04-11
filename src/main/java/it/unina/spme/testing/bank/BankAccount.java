@@ -3,8 +3,8 @@ package it.unina.spme.testing.bank;
 public class BankAccount {
     private String holder;
     private double amount;
-    private BankTransactionLedger transactionLedger = new BankTransactionLedger();
-    private AntiMoneyLaunderingPolicy policy = new ItalianAntiMoneyLaunderingPolicy();
+    private BankTransactionLedger transactionLedger;
+    private AntiMoneyLaunderingPolicy policy;
 
 
     public BankAccount(String holder, double amount) {
@@ -12,8 +12,17 @@ public class BankAccount {
         this.amount = amount;
     }
 
+    public BankAccount(String holder, double amount,BankTransactionLedger bankTransactionLedger,
+                                            AntiMoneyLaunderingPolicy antiMoneyLaunderingPolicy) {
+        this.holder = holder;
+        this.amount = amount;
+        this.transactionLedger = bankTransactionLedger;
+        this.policy = antiMoneyLaunderingPolicy;
+    }
+
+
     public void withdraw(double toWithdraw) throws IllegalArgumentException {
-        if(amount > this.amount){
+        if(toWithdraw > this.amount){
             throw new IllegalArgumentException("Insufficient funds!");
         }
         if(toWithdraw<=0){

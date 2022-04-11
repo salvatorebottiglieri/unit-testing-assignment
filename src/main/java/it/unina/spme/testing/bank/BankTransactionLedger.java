@@ -1,11 +1,7 @@
 package it.unina.spme.testing.bank;
 
-public class BankTransactionLedger {
-    public void write() {
-        return;
-    }
+public interface BankTransactionLedger {
 
-    public void write(BankAccount bankAccount, String operation, double amount) {
-        System.out.println(bankAccount.getHolder() + " " + operation + " " + amount);
-    }
+    void write();
+    void write(BankAccount bankAccount, String operation, double amount);
 }
